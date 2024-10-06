@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Build",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "outDir": "${configDir}/dist",
+    "rootDir": "${configDir}/src",
+    "noEmit": false,
+    "tsBuildInfoFile": "${configDir}/node_modules/.cache/typescript/tsconfig.build.tsbuildinfo"
+  },
+  "include": [
+    "${configDir}/src/**/*.ts",
+    "${configDir}/src/**/*.tsx",
+    "${configDir}/src/**/*.cts",
+    "${configDir}/src/**/*.ctsx",
+    "${configDir}/src/**/*.mts",
+    "${configDir}/src/**/*.mtsx",
+    "${configDir}/src/**/*.js",
+    "${configDir}/src/**/*.jsx",
+    "${configDir}/src/**/*.cjs",
+    "${configDir}/src/**/*.cjsx",
+    "${configDir}/src/**/*.mjs",
+    "${configDir}/src/**/*.mjsx"
+  ]
+}
