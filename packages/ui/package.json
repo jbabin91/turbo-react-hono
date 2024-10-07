@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "rm -rf .turbo dist node_modules",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
