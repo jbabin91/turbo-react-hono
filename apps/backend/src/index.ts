@@ -1,12 +1,6 @@
-import { Hono } from 'hono';
+import { app } from '@repo/api';
 
 import env from '@/env';
-
-const app = new Hono();
-
-app.get('/', (c) => {
-  return c.text('Hello Hono!');
-});
 
 export default {
   fetch: app.fetch,
