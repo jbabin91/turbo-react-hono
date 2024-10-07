@@ -15,7 +15,7 @@ expand(
 
 const EnvSchema = z.object({
   LOG_LEVEL: z
-    .enum(['error', 'warn', 'info', 'http', 'verbose', 'debug', 'silly'])
+    .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
     .default('info'),
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
