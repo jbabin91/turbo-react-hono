@@ -110,8 +110,8 @@ importers:
         specifier: ^0.16.4
         version: 0.16.4(hono@4.6.3)(zod@3.23.8)
       '@scalar/hono-api-reference':
-        specifier: ^0.5.151
-        version: 0.5.151(hono@4.6.3)
+        specifier: ^0.5.152
+        version: 0.5.152(hono@4.6.3)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -723,8 +723,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scalar/hono-api-reference@0.5.151':
-    resolution: {integrity: sha512-66IKGViO83v372rQ5DtsXxY4nidKgY+x1DJZyllEuQQQIdAomJEWickrCCvBbt4CVywtRciakmC0RY10hharjw==}
+  '@scalar/hono-api-reference@0.5.152':
+    resolution: {integrity: sha512-mSRpicEjr3q3ulXHV9fpPKgq+Mju0/A9jyB4NvvZ9GitunTm6P4urr/RKzgESDTqYK3zK/VGahZWeQFLi6PSKQ==}
     engines: {node: '>=18'}
     peerDependencies:
       hono: ^4.0.0
@@ -3515,7 +3515,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
 
-  '@scalar/hono-api-reference@0.5.151(hono@4.6.3)':
+  '@scalar/hono-api-reference@0.5.152(hono@4.6.3)':
     dependencies:
       '@scalar/types': 0.0.13
       hono: 4.6.3
@@ -3667,7 +3667,7 @@ snapshots:
 
   '@types/ws@8.5.12':
     dependencies:
-      '@types/node': 22.7.4
+      '@types/node': 20.12.14
 
   '@typescript-eslint/eslint-plugin@8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.2))(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.2)':
     dependencies:
