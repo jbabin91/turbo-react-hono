@@ -10,4 +10,10 @@ export default [
       },
     },
   },
+  {
+    files: ['**/env.ts'],
+    rules: {
+      'unicorn/no-process-exit': 'off',
+    },
+  },
 ];

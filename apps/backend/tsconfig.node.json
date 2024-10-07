@@ -1,8 +1,0 @@
-{
-  "extends": "@repo/typescript-config/build.json",
-  "compilerOptions": {
-    "types": ["node"],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
-}
