@@ -5,6 +5,8 @@ import react from 'eslint-plugin-react';
 // @ts-ignore
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+// @ts-ignore
+import sortKeysFix from 'eslint-plugin-sort-keys-fix';
 import tailwindcss from 'eslint-plugin-tailwindcss';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -30,16 +32,18 @@ export default tseslint.config(
     plugins: {
       'import-x': importX,
       'simple-import-sort': simpleImportSort,
+      'sort-keys-fix': sortKeysFix,
       unicorn,
     },
     rules: {
       ...unicorn.configs['flat/recommended'].rules,
       'import-x/first': 'error',
       'import-x/newline-after-import': 'error',
-      'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
       'import-x/no-cycle': 'error',
+      'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
+      'sort-keys-fix/sort-keys-fix': 'error',
       'unicorn/filename-case': [
         'error',
         {
@@ -95,13 +99,6 @@ export default tseslint.config(
     files: ['**/*.jsx', '**/*.tsx'],
     ...react.configs.flat.recommended,
     ...react.configs.flat['jsx-runtime'],
-    plugins: {
-      'jsx-a11y': jsxA11y,
-      // @ts-ignore
-      react,
-      'react-hooks': reactHooks,
-      tailwindcss,
-    },
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {
@@ -109,10 +106,12 @@ export default tseslint.config(
         },
       },
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
+    plugins: {
+      'jsx-a11y': jsxA11y,
+      // @ts-ignore
+      react,
+      'react-hooks': reactHooks,
+      tailwindcss,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -132,6 +131,11 @@ export default tseslint.config(
       'react/no-unknown-property': 'off',
       'react/prop-types': 'off',
       'tailwindcss/no-custom-classname': 'off',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
 );
