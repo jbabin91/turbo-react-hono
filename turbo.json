@@ -10,6 +10,12 @@
     "clean": {
       "cache": false
     },
+    "db:generate": {},
+    "db:migrate": {},
+    "db:push": {},
+    "db:reset": {},
+    "db:seed": {},
+    "db:studio": {},
     "dev": {
       "cache": false,
       "persistent": true

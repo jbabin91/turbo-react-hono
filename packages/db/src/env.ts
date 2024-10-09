@@ -21,10 +21,6 @@ const EnvSchema = z.object({
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
     .default('development'),
-  PGLITE: z
-    .string()
-    .optional()
-    .transform((v) => v === 'true'),
 });
 
 export type env = z.infer<typeof EnvSchema>;

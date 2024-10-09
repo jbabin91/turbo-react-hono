@@ -11,7 +11,7 @@ export default [
     },
   },
   {
-    files: ['**/env.ts'],
+    files: ['**/env.ts', '**/scripts/**/*.ts'],
     rules: {
       'unicorn/no-process-exit': 'off',
     },
@@ -23,7 +23,7 @@ export default [
     },
   },
   {
-    files: ['**/schema/**/*.ts'],
+    files: ['**/schema/**/*.ts', '**/scripts/**/*.ts'],
     rules: {
       'sort-keys-fix/sort-keys-fix': 'off',
     },

@@ -10,20 +10,25 @@
   "types": "./src/index.ts",
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
+    "db:generate": "drizzle-kit generate --config ./drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./drizzle.config.ts",
+    "db:reset": "bun run ./scripts/reset.ts",
+    "db:seed": "bun run ./scripts/seed.ts",
+    "db:studio": "drizzle-kit studio --config ./drizzle.config.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@electric-sql/pglite": "^0.2.11",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.34.1",
     "drizzle-zod": "^0.5.1",
-    "node-postgres": "^0.6.2",
     "pg": "^8.13.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.3",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/pg": "^8.11.10",
