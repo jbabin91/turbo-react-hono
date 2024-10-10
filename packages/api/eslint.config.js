@@ -16,4 +16,10 @@ export default [
       'unicorn/no-process-exit': 'off',
     },
   },
+  {
+    files: ['**/routes/**/*.ts'],
+    rules: {
+      'sort-keys-fix/sort-keys-fix': 'off',
+    },
+  },
 ];

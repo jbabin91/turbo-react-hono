@@ -5,6 +5,7 @@ import {
 } from '@hono/zod-openapi';
 import { type PinoLogger } from 'hono-pino';
 
+// Middleware env is app-specific
 export type AppBindings = {
   Variables: {
     logger: PinoLogger;

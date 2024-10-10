@@ -4,6 +4,7 @@ import { createMessageObjectSchema } from 'stoker/openapi/schemas';
 
 import { HttpStatusCodes } from '../lib/constants';
 import { createRouter } from '../lib/create-app';
+import { errorResponses } from '../utils/schema/common-responses';
 
 const router = createRouter().openapi(
   createRoute({
@@ -14,6 +15,7 @@ const router = createRouter().openapi(
         createMessageObjectSchema('TRH API'),
         'TRH API Index',
       ),
+      ...errorResponses,
     },
     tags: ['Index'],
   }),
