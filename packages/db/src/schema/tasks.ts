@@ -3,7 +3,7 @@ import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { type z } from 'zod';
 
 export const tasks = pgTable('tasks', {
-  id: uuid().defaultRandom().primaryKey(),
+  id: uuid().defaultRandom().notNull().primaryKey(),
   name: text().notNull(),
   done: boolean().notNull().default(false),
   createdAt: timestamp({ mode: 'date', withTimezone: true }).defaultNow(),
@@ -12,18 +12,18 @@ export const tasks = pgTable('tasks', {
     .$onUpdate(() => new Date()),
 });
 
-export const unsafeTasksSelectSchema = createSelectSchema(tasks);
-export const tasksSelectSchema = unsafeTasksSelectSchema.omit({
+export const unsafeSelectTaskSchema = createSelectSchema(tasks);
+export const selectTaskSchema = unsafeSelectTaskSchema.omit({
   createdAt: true,
   updatedAt: true,
 });
-export const tasksInsertSchema = createInsertSchema(tasks).omit({
+export const insertTaskSchema = createInsertSchema(tasks).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
 });
-export const tasksUpdateSchema = tasksInsertSchema.partial();
+export const patchTaskSchema = insertTaskSchema.partial();
 
-export type Task = z.infer<typeof tasksSelectSchema>;
-export type TaskInsert = z.infer<typeof tasksInsertSchema>;
-export type TaskUpdate = z.infer<typeof tasksUpdateSchema>;
+export type Task = z.infer<typeof selectTaskSchema>;
+export type InsertTask = z.infer<typeof insertTaskSchema>;
+export type PatchTask = z.infer<typeof patchTaskSchema>;
