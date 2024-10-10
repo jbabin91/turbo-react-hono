@@ -4,9 +4,9 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "tsBuildInfoFile": "${configDir}/node_modules/.cache/typescript/tsconfig.node.tsbuildinfo"
   },
-  "include": ["vite.config.ts"]
+  "include": ["tailwind.config.ts", "vite.config.ts"]
 }
