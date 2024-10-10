@@ -63,34 +63,18 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
+    @apply bg-background text-foreground min-h-screen m-0;
   }
   :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-
   .logo {
-    height: 6em;
-    padding: 1.5em;
+    @apply size-24 p-4;
     will-change: filter;
     transition: filter 300ms;
   }
