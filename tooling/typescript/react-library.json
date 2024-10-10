@@ -5,7 +5,6 @@
   "compilerOptions": {
     "outDir": "${configDir}/dist",
     "rootDir": "${configDir}/src",
-    "noEmit": false,
     "tsBuildInfoFile": "${configDir}/node_modules/.cache/typescript/tsconfig.build.tsbuildinfo"
   }
 }
