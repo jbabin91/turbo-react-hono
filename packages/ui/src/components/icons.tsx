@@ -13,6 +13,7 @@ import {
   MoonIcon,
   SunIcon,
 } from '@radix-ui/react-icons';
+import { LoaderCircleIcon } from 'lucide-react';
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -27,6 +28,7 @@ export const Icons = {
   DotFilled: DotFilledIcon,
   DotsHorizontal: DotsHorizontalIcon,
   DragHandleDots2: DragHandleDots2Icon,
+  Loader: LoaderCircleIcon,
   MagnifyingGlass: MagnifyingGlassIcon,
   Moon: MoonIcon,
   Sun: SunIcon,
