@@ -16,10 +16,12 @@
     "db:reset": "bun run ./scripts/reset.ts",
     "db:seed": "bun run ./scripts/seed.ts",
     "db:studio": "drizzle-kit studio --config ./drizzle.config.ts",
+    "dev": "pnpm db:studio",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/core": "workspace:*",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.34.1",

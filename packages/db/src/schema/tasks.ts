@@ -1,9 +1,13 @@
-import { boolean, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { generateId } from '@repo/core';
+import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { type z } from 'zod';
 
 export const tasks = pgTable('tasks', {
-  id: uuid().defaultRandom().notNull().primaryKey(),
+  id: text()
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => generateId()),
   name: text().notNull(),
   done: boolean().notNull().default(false),
   createdAt: timestamp({ mode: 'date', withTimezone: true }).defaultNow(),
