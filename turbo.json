@@ -10,7 +10,10 @@
     "clean": {
       "cache": false
     },
-    "db:generate": {},
+    "db:generate": {
+      "cache": false,
+      "interactive": true
+    },
     "db:migrate": {},
     "db:push": {},
     "db:reset": {},

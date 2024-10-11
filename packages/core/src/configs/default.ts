@@ -9,6 +9,12 @@ export const config = {
   domain: 'jacebabin.com',
   frontendUrl: 'http://localhost:5173',
   backendUrl: 'http://localhost:3001',
+
+  rolesByType: {
+    systemRoles: ['user', 'admin'] as const,
+    entityRoles: ['member', 'admin'] as const,
+    allRoles: ['user', 'member', 'admin'] as const,
+  },
 };
 
 export default config;

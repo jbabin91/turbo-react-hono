@@ -1,37 +1,85 @@
-import { eq } from 'drizzle-orm';
+import { faker } from '@faker-js/faker';
+import { Argon2id } from 'oslo/password';
 
-import { db } from '../src/db';
-import { tasks } from '../src/schema/tasks';
+import { db } from '../src';
+import {
+  type InsertTask,
+  type InsertUser,
+  tasks as tasksTable,
+  users as usersTable,
+} from '../src/schema';
+
+const adminUser = {
+  email: 'admin.user@email.com',
+  firstName: 'Admin',
+  lastName: 'User',
+  password: 'password',
+};
+
+type Users = InsertUser[];
+type Tasks = InsertTask[];
 
 async function seed() {
-  const task: typeof tasks.$inferInsert = {
-    name: 'Task 1',
-    done: false,
-  };
+  const argon2id = new Argon2id();
+
+  const users: Users = [
+    {
+      email: adminUser.email,
+      firstName: adminUser.firstName,
+      lastName: adminUser.lastName,
+      name: `${adminUser.firstName} ${adminUser.lastName}`,
+      hashedPassword: await argon2id.hash(adminUser.password),
+      role: 'admin',
+    },
+  ];
+  const tasks: Tasks = [];
 
   console.log('🌱 Seeding the database');
 
-  await db.insert(tasks).values(task);
-  console.log('Task was created!');
+  for (let i = 0; i < 49; i++) {
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    users.push({
+      firstName,
+      lastName,
+      name: `${firstName} ${lastName}`,
+      email: faker.internet.email({ firstName, lastName }),
+      hashedPassword: await argon2id.hash('password'),
+      role: 'user',
+    });
+  }
 
-  const selectedTasks = await db.select().from(tasks);
-  console.log('Getting all tasks from the database:', selectedTasks);
+  console.log('🌳 Seeding users');
 
-  const [updatedTask] = await db
-    .update(tasks)
-    .set({ done: true })
-    .where(eq(tasks.id, selectedTasks[0]!.id))
-    .returning();
-  console.log('Task was updated!', updatedTask);
+  await db.insert(usersTable).values(users);
 
-  // await db.delete(tasks).where(eq(tasks.id, selectedTasks[0]!.id));
-  // console.log('Task was deleted!');
+  console.log('✅ Done seeding users');
+
+  console.log('🤔 Getting users from table');
+
+  const usersInTable = await db.query.users.findMany();
+
+  for (const user of usersInTable) {
+    for (let i = 0; i < 5; i++) {
+      tasks.push({
+        name: faker.lorem.words(),
+        done: faker.datatype.boolean(),
+        authorId: user.id,
+      });
+    }
+  }
+
+  console.log('🌴 Seeding tasks');
+
+  await db.insert(tasksTable).values(tasks);
+
+  console.log('✅ Done seeding tasks');
 }
 
 try {
   await seed();
 } catch (error) {
-  console.error('Error during seeding:', error);
+  console.error('❌ Error during seeding:', error);
 } finally {
   process.exit(0);
 }
