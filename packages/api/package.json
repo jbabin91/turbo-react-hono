@@ -9,12 +9,15 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
+    "build": "tsc -b",
     "clean": "rm -rf .turbo node_modules",
+    "dev": "tsc -b --watch",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.16.4",
+    "@repo/core": "workspace:*",
     "@repo/db": "workspace:*",
     "@scalar/hono-api-reference": "^0.5.153",
     "dotenv": "^16.4.5",

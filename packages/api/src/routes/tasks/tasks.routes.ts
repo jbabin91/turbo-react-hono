@@ -3,6 +3,7 @@ import { insertTaskSchema, patchTaskSchema, selectTaskSchema } from '@repo/db';
 import { jsonContent, jsonContentRequired } from 'stoker/openapi/helpers';
 import { z } from 'zod';
 
+import { commonRoutes } from '../../lib/configure-open-api';
 import { HttpStatusCodes } from '../../lib/constants';
 import {
   errorResponses,
@@ -11,7 +12,7 @@ import {
 } from '../../utils/schema/common-responses';
 import { idParamsSchema } from '../../utils/schema/common-schemas';
 
-const tags = ['Tasks'];
+const tags = [commonRoutes.tasks.name];
 
 export const list = createRoute({
   path: '/tasks',

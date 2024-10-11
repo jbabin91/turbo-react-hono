@@ -11,9 +11,9 @@ export function pinoLogger() {
     },
     pino: pino(
       {
-        level: env?.LOG_LEVEL,
+        level: env.LOG_LEVEL,
       },
-      env?.NODE_ENV === 'production' ? undefined : pretty(),
+      env.NODE_ENV === 'production' ? undefined : pretty(),
     ),
   });
 }
