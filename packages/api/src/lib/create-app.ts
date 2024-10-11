@@ -1,10 +1,9 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { generateId } from '@repo/core';
 import { contextStorage } from 'hono/context-storage';
-import { serveEmojiFavicon } from 'stoker/middlewares';
 import { defaultHook } from 'stoker/openapi';
 
-import { pinoLogger } from '../middlewares/pino-logger';
+import middlewares from '../middlewares';
 import { type AppBindings, type AppOpenAPI } from '../types/app';
 import { HttpStatusCodes } from './constants';
 import { errorResponse } from './errors';
@@ -17,14 +16,15 @@ export function createRouter() {
 
 export default function createApp() {
   const app = createRouter();
+
   app.use(contextStorage());
   app.use(async (c, next) => {
     const logId = generateId();
     c.set('logId', logId);
     return await next();
   });
-  app.use(serveEmojiFavicon('🔥'));
-  app.use(pinoLogger());
+  app.route('', middlewares);
+
   app.notFound((c) => {
     return errorResponse(c, HttpStatusCodes.NOT_FOUND, 'warn');
   });

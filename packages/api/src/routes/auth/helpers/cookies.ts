@@ -5,7 +5,7 @@ import { type Context } from 'hono';
 import { setCookie as baseSetCookie } from 'hono/cookie';
 
 import env from '../../../env';
-import { logEvent } from '../../../middlewares/pino-logger';
+import { logEvent } from '../../../middlewares/logger';
 
 const isProduction = env.NODE_ENV === 'production';
 

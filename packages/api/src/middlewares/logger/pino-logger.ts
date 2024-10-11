@@ -4,9 +4,7 @@ import { logger } from 'hono-pino';
 import pino from 'pino';
 import pretty from 'pino-pretty';
 
-import env from '../env';
-import { getLoggerContext } from '../lib/context';
-import { type EventData, type Severity } from '../lib/errors';
+import env from '../../env';
 
 export function pinoLogger(): MiddlewareHandler {
   return logger({
@@ -20,14 +18,4 @@ export function pinoLogger(): MiddlewareHandler {
       env.NODE_ENV === 'production' ? undefined : pretty(),
     ),
   });
-}
-
-export function logEvent(
-  message: string,
-  eventData?: EventData,
-  severity: Severity = 'info',
-) {
-  const logger = getLoggerContext();
-  logger[severity](`logEvent: ${message}`);
-  if (eventData) logger[severity](`eventData: ${JSON.stringify(eventData)}`);
 }

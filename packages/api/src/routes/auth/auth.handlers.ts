@@ -4,7 +4,7 @@ import { eq } from 'drizzle-orm';
 
 import { HttpStatusCodes } from '../../lib/constants';
 import { errorResponse } from '../../lib/errors';
-import { logEvent } from '../../middlewares/pino-logger';
+import { logEvent } from '../../middlewares/logger';
 import { type AppRouteHandler } from '../../types/app';
 import { transformDatabaseUser } from '../users/helpers/transform-database-user';
 import {
