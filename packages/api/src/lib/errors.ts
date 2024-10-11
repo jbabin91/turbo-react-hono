@@ -9,10 +9,11 @@ import { type z } from 'zod';
 
 import { type errorSchema } from '../utils/schema/common-schemas';
 import { HttpStatusPhrases } from './constants';
+import { getLogIdContext } from './context';
 
 export type HttpErrorStatus = ClientErrorStatusCode | ServerErrorStatusCode;
 
-export type Severity = 'debug' | 'info' | 'log' | 'warn' | 'error';
+export type Severity = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
 export type EventData = Readonly<
   Record<string, number | string | boolean | null>
@@ -31,6 +32,7 @@ export const createError = (
   eventData?: EventData,
   err?: Error,
 ) => {
+  const logId = getLogIdContext();
   let message;
 
   switch (status) {
@@ -48,6 +50,10 @@ export const createError = (
     }
     case 404: {
       message = HttpStatusPhrases.NOT_FOUND;
+      break;
+    }
+    case 409: {
+      message = HttpStatusPhrases.CONFLICT;
       break;
     }
     case 422: {
@@ -72,7 +78,7 @@ export const createError = (
     message,
     status,
     severity,
-    logId: '123',
+    logId,
     path: c.req.path,
     method: c.req.method,
   };

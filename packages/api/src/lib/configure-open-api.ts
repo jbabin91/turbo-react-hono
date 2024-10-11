@@ -13,9 +13,17 @@ export const commonRoutes = {
     name: 'General',
     description: 'General endpoints that do not fit in any other module.',
   },
+  auth: {
+    name: 'Auth',
+    description: 'Auth endpoints are used to manage authentication.',
+  },
   tasks: {
     name: 'Tasks',
     description: 'Tasks endpoints are used to manage tasks.',
+  },
+  users: {
+    name: 'Users',
+    description: 'Users endpoints are used to manage users.',
   },
 } as const;
 
@@ -27,7 +35,7 @@ export default function configureOpenAPI(app: AppOpenAPI) {
   registry.registerComponent('securitySchemes', 'cookieAuth', {
     type: 'apiKey',
     in: 'cookie',
-    name: `${config.slug}-session-${version}`,
+    name: `${config.slug}-session`,
     description:
       "Authentication cookie. Copy the cookie from your network tab and paste it here. If you don't have it, you need to sign in or sign up first.",
   });

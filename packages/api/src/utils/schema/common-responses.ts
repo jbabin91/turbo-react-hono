@@ -45,6 +45,10 @@ export const errorResponses = {
     failWithErrorSchema,
     'Not found: resource does not exist.',
   ),
+  [HttpStatusCodes.CONFLICT]: jsonContent(
+    failWithErrorSchema,
+    'Conflict: resource already exists.',
+  ),
   [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
     failWithErrorSchema,
     'Unprocessable entity: validation error.',
