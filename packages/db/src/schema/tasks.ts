@@ -4,10 +4,7 @@ import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { type z } from 'zod';
 
 export const tasks = pgTable('tasks', {
-  id: text()
-    .notNull()
-    .primaryKey()
-    .$defaultFn(() => generateId()),
+  id: text().primaryKey().$defaultFn(generateId),
   name: text().notNull(),
   done: boolean().notNull().default(false),
   createdAt: timestamp({ mode: 'date', withTimezone: true }).defaultNow(),
