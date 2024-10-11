@@ -10,10 +10,4 @@ export default [
       },
     },
   },
-  {
-    files: ['**/tsup.config.ts'],
-    rules: {
-      'sort-keys-fix/sort-keys-fix': 'off',
-    },
-  },
 ];

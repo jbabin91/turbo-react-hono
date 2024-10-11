@@ -1,4 +1,4 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
-  "include": ["tailwind.config.ts", "tsup.config.ts"]
+  "include": ["tailwind.config.ts"]
 }
