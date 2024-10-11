@@ -4,5 +4,5 @@ import env from '@/env';
 
 export default {
   fetch: app.fetch,
-  port: env?.PORT,
+  port: env.PORT,
 };
