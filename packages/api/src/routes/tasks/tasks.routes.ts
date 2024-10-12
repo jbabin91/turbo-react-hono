@@ -1,6 +1,5 @@
 import { insertTaskSchema, patchTaskSchema, selectTaskSchema } from '@repo/db';
 import { jsonContent, jsonContentRequired } from 'stoker/openapi/helpers';
-import { z } from 'zod';
 
 import { commonRoutes } from '../../lib/configure-open-api';
 import { HttpStatusCodes } from '../../lib/constants';
@@ -10,8 +9,10 @@ import {
   errorResponses,
   successWithDataSchema,
   successWithoutDataSchema,
+  successWithPaginationSchema,
 } from '../../utils/schema/common-responses';
 import { idParamsSchema } from '../../utils/schema/common-schemas';
+import { tasksQuerySchema } from './helpers/schema';
 
 const tags = [commonRoutes.tasks.name];
 
@@ -22,9 +23,12 @@ export const list = createRouteConfig({
   guard: [isAuthenticated],
   summary: 'Get a list of tasks',
   description: 'Get a list of tasks.',
+  request: {
+    query: tasksQuerySchema,
+  },
   responses: {
     [HttpStatusCodes.OK]: jsonContent(
-      successWithDataSchema(z.array(selectTaskSchema)),
+      successWithPaginationSchema(selectTaskSchema),
       'The list of tasks',
     ),
     ...errorResponses,
