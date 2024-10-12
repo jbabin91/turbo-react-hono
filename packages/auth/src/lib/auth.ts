@@ -21,7 +21,14 @@ export const lucia = new Lucia(adapter, {
   sessionCookie,
   sessionExpiresIn: new TimeSpan(4, 'w'),
   getUserAttributes: ({ hashedPassword: _, ...attributes }) => {
-    return attributes;
+    return {
+      id: attributes.id,
+      firstName: attributes.firstName,
+      lastName: attributes.lastName,
+      name: attributes.name,
+      email: attributes.email,
+      role: attributes.role,
+    };
   },
 });
 
