@@ -1,8 +1,21 @@
 import { ModeToggle } from '@repo/ui';
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { type QueryClient } from '@tanstack/react-query';
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet,
+} from '@tanstack/react-router';
 
-export const Route = createRootRoute({
+import {
+  TanstackQueryDevtools,
+  TanstackRouterDevtools,
+} from '@/components/utils';
+
+type RouterContext = {
+  queryClient: QueryClient;
+};
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
 });
 
@@ -31,7 +44,8 @@ function RootLayout() {
       <main className="justify-center text-center">
         <Outlet />
       </main>
-      <TanStackRouterDevtools />
+      <TanstackRouterDevtools />
+      <TanstackQueryDevtools />
     </>
   );
 }

@@ -1,11 +1,23 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 
-import { routeTree } from './routeTree.gen';
+import { DefaultCatchBoundary, NotFound } from './components/errors';
+import { queryClient } from './lib/query-client.ts';
+import { routeTree } from './routeTree.gen.ts';
 
-const router = createRouter({ routeTree });
+// Create a new router instance
+const router = createRouter({
+  context: {
+    queryClient,
+  },
+  defaultErrorComponent: DefaultCatchBoundary,
+  defaultNotFoundComponent: () => <NotFound />,
+  defaultPreload: 'intent',
+  defaultPreloadStaleTime: 0,
+  routeTree,
+});
 
+// Register the router instance for type safety
 declare module '@tanstack/react-router' {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Register {
     router: typeof router;
   }

@@ -14,4 +14,10 @@ export default [
       },
     },
   },
+  {
+    files: ['**/App.tsx'],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': 'off',
+    },
+  },
 ];
