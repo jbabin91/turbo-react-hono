@@ -1,6 +1,6 @@
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
 import { config } from '@repo/core';
-import { db, sessions, type User, users } from '@repo/db';
+import { db, sessions, type UnsafeUser, users } from '@repo/db';
 import { Lucia, type SessionCookieOptions, TimeSpan } from 'lucia';
 
 import env from '../env';
@@ -20,7 +20,7 @@ const sessionCookie = {
 export const lucia = new Lucia(adapter, {
   sessionCookie,
   sessionExpiresIn: new TimeSpan(4, 'w'),
-  getUserAttributes: (attributes) => {
+  getUserAttributes: ({ hashedPassword: _, ...attributes }) => {
     return attributes;
   },
 });
@@ -29,6 +29,6 @@ declare module 'lucia' {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Register {
     Lucia: typeof lucia;
-    DatabaseUserAttributes: User;
+    DatabaseUserAttributes: UnsafeUser;
   }
 }
