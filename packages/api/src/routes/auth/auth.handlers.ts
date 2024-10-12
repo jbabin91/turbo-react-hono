@@ -53,7 +53,7 @@ export const signIn: AppRouteHandler<SignInRoute> = async (c) => {
   const { email, password } = c.req.valid('json');
 
   const user = await db.query.users.findFirst({
-    where: eq(users.email, email.toLocaleLowerCase()),
+    where: eq(users.email, email.toLowerCase()),
   });
 
   // If the user is not found

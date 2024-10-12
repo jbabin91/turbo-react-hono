@@ -18,6 +18,17 @@ export const successWithDataSchema = <T extends z.ZodTypeAny>(schema: T) =>
     data: schema,
   });
 
+export const successWithPaginationSchema = <T extends z.ZodTypeAny>(
+  schema: T,
+) =>
+  z.object({
+    success: z.boolean(),
+    data: z.object({
+      items: z.array(schema),
+      total: z.number(),
+    }),
+  });
+
 export const successWithErrorsSchema = () =>
   z.object({
     success: z.boolean(),
