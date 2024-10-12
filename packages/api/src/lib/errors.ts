@@ -1,28 +1,13 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
 import { type Context } from 'node:vm';
 
 import {
-  type ClientErrorStatusCode,
-  type ServerErrorStatusCode,
-} from 'hono/utils/http-status';
-import { type z } from 'zod';
-
-import { type errorSchema } from '../utils/schema/common-schemas';
+  type ErrorType,
+  type EventData,
+  type HttpErrorStatus,
+  type Severity,
+} from '../types/errors';
 import { HttpStatusPhrases } from './constants';
 import { getLogIdContext } from './context';
-
-export type HttpErrorStatus = ClientErrorStatusCode | ServerErrorStatusCode;
-
-export type Severity = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace';
-
-export type EventData = Readonly<
-  Record<string, number | string | boolean | null>
->;
-
-export type ErrorType = z.infer<typeof errorSchema> & {
-  eventData?: EventData;
-  name?: Error['name'];
-};
 
 // Create error object and log it if needed
 export const createError = (

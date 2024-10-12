@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
 import { type createRoute } from '@hono/zod-openapi';
 import { jsonContent } from 'stoker/openapi/helpers';
 import { z } from 'zod';

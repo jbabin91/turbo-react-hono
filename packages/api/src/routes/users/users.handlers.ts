@@ -4,9 +4,10 @@ import { and, count, eq, ilike, inArray, or } from 'drizzle-orm';
 
 import { HttpStatusCodes } from '../../lib/constants';
 import { getUserContext } from '../../lib/context';
-import { createError, errorResponse, type ErrorType } from '../../lib/errors';
+import { createError, errorResponse } from '../../lib/errors';
 import { logEvent } from '../../middlewares/logger';
 import { type AppRouteHandler } from '../../types/app';
+import { type ErrorType } from '../../types/errors';
 import { getOrderColumn } from '../../utils/order-column';
 import { removeSessionCookie } from '../auth/helpers/cookies';
 import { getUsersByConditions } from './helpers/get-user';

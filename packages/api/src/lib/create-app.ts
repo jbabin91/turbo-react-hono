@@ -1,12 +1,11 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { generateId } from '@repo/core';
 import { contextStorage } from 'hono/context-storage';
+import { notFound, onError } from 'stoker/middlewares';
 import { defaultHook } from 'stoker/openapi';
 
 import middlewares from '../middlewares';
 import { type AppBindings, type AppOpenAPI } from '../types/app';
-import { HttpStatusCodes } from './constants';
-import { errorResponse } from './errors';
 
 export function createRouter() {
   return new OpenAPIHono<AppBindings>({
@@ -25,12 +24,8 @@ export default function createApp() {
   });
   app.route('', middlewares);
 
-  app.notFound((c) => {
-    return errorResponse(c, HttpStatusCodes.NOT_FOUND, 'warn');
-  });
-  app.onError((c) => {
-    return errorResponse(c, HttpStatusCodes.INTERNAL_SERVER_ERROR, 'error');
-  });
+  app.notFound(notFound);
+  app.onError(onError);
   return app;
 }
 

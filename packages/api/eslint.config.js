@@ -17,7 +17,7 @@ export default [
     },
   },
   {
-    files: ['**/routes/**/*.ts'],
+    files: ['**/routes/**/*.ts', '**/lib/**/*.ts', '**/utils/schema/**/*.ts'],
     rules: {
       'sort-keys-fix/sort-keys-fix': 'off',
     },

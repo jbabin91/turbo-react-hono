@@ -4,9 +4,10 @@ import { eq } from 'drizzle-orm';
 
 import { HttpStatusCodes } from '../../lib/constants';
 import { getUserContext } from '../../lib/context';
-import { createError, errorResponse, type ErrorType } from '../../lib/errors';
+import { createError, errorResponse } from '../../lib/errors';
 import { logEvent } from '../../middlewares/logger';
 import { type AppRouteHandler } from '../../types/app';
+import { type ErrorType } from '../../types/errors';
 import { removeSessionCookie } from '../auth/helpers/cookies';
 import { transformDatabaseUser } from '../users/helpers/transform-database-user';
 import {

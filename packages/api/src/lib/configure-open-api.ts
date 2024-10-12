@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
 import { config } from '@repo/core';
 import { apiReference } from '@scalar/hono-api-reference';
 

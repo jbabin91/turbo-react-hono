@@ -1,5 +1,5 @@
 import { getLoggerContext } from '../../lib/context';
-import { type EventData, type Severity } from '../../lib/errors';
+import { type EventData, type Severity } from '../../types/errors';
 
 export function logEvent(
   message: string,

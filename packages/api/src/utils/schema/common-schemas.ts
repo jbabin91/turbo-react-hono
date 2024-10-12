@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
 import { z } from 'zod';
 
 export const passwordSchema = z.string().min(1).min(8).max(100);
@@ -23,6 +22,7 @@ export const errorSchema = z.object({
   path: z.string().optional(),
   method: z.string().optional(),
   timestamp: z.string().optional(),
+  usr: z.string().optional(),
 });
 
 export const failWithErrorSchema = z.object({

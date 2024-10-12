@@ -1,6 +1,4 @@
-import { type Context } from 'node:vm';
-
-import { type Next } from 'hono';
+import { type Context, type Next } from 'hono';
 import { every } from 'hono/combine';
 import { createMiddleware } from 'hono/factory';
 
