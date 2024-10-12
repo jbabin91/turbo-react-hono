@@ -1,26 +1,29 @@
-import { createRoute, z } from '@hono/zod-openapi';
-import { selectUserSchema } from '@repo/db';
+import { z } from '@hono/zod-openapi';
+import { insertUserSchema, selectUserSchema } from '@repo/db';
 import { jsonContent, jsonContentRequired } from 'stoker/openapi/helpers';
 
 import { commonRoutes } from '../../lib/configure-open-api';
 import { HttpStatusCodes } from '../../lib/constants';
+import { createRouteConfig } from '../../lib/route-config';
+import { isPublicAccess } from '../../middlewares/guard';
 import {
   errorResponses,
   successWithoutDataSchema,
 } from '../../utils/schema/common-responses';
 import { cookieSchema } from '../../utils/schema/common-schemas';
-import { signInSchema, signUpSchema } from './helpers/schema';
+import { signInSchema } from './helpers/schema';
 
 const tags = [commonRoutes.auth.name];
 
-export const signUp = createRoute({
+export const signUp = createRouteConfig({
   path: '/auth/sign-up',
   method: 'post',
   tags,
+  guard: [isPublicAccess],
   summary: 'Sign up with password',
   description: 'Sign up with email and password.',
   request: {
-    body: jsonContentRequired(signUpSchema, "The user's information"),
+    body: jsonContentRequired(insertUserSchema, "The user's information"),
   },
   responses: {
     [HttpStatusCodes.OK]: {
@@ -33,10 +36,11 @@ export const signUp = createRoute({
   },
 });
 
-export const signIn = createRoute({
+export const signIn = createRouteConfig({
   path: '/auth/sign-in',
   method: 'post',
   tags,
+  guard: [isPublicAccess],
   summary: 'Sign in with email and password',
   description: 'Sign in with email and password.',
   request: {
@@ -53,10 +57,11 @@ export const signIn = createRoute({
   },
 });
 
-export const signOut = createRoute({
+export const signOut = createRouteConfig({
   path: '/auth/sign-out',
   method: 'post',
   tags,
+  guard: [isPublicAccess],
   summary: 'Sign out the current user',
   description: 'Sign out the current user.',
   responses: {
