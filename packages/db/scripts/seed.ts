@@ -40,7 +40,7 @@ async function seed() {
 
   console.log('🌱 Seeding the database');
 
-  for (let i = 0; i < 49; i++) {
+  for (let i = 0; i < 79; i++) {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     users.push({
@@ -64,7 +64,7 @@ async function seed() {
   const usersInTable = await db.query.users.findMany();
 
   for (const user of usersInTable) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 60; i++) {
       tasks.push({
         name: faker.lorem.words(),
         done: faker.datatype.boolean(),
