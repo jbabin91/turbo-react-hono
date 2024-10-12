@@ -67,7 +67,10 @@ export const getOne: AppRouteHandler<GetOneRoute> = async (c) => {
     return errorResponse(c, HttpStatusCodes.NOT_FOUND, 'warn');
   }
 
-  return c.json({ success: true, data: user }, HttpStatusCodes.OK);
+  return c.json(
+    { success: true, data: transformDatabaseUser(user) },
+    HttpStatusCodes.OK,
+  );
 };
 
 export const patch: AppRouteHandler<PatchRoute> = async (c) => {
@@ -88,7 +91,10 @@ export const patch: AppRouteHandler<PatchRoute> = async (c) => {
     return errorResponse(c, HttpStatusCodes.NOT_FOUND, 'warn');
   }
 
-  return c.json({ success: true, data: user });
+  return c.json(
+    { success: true, data: transformDatabaseUser(user) },
+    HttpStatusCodes.OK,
+  );
 };
 
 export const remove: AppRouteHandler<RemoveRoute> = async (c) => {
@@ -146,7 +152,7 @@ export const remove: AppRouteHandler<RemoveRoute> = async (c) => {
       removeSessionCookie(c);
     }
 
-    logEvent(`User deleted: ${JSON.stringify({ user: id })}`);
+    logEvent('User deleted', { user: id });
   }
 
   return c.json({ success: true, errors }, HttpStatusCodes.OK);
