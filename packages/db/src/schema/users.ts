@@ -3,6 +3,8 @@ import { index, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
+import { omitKeys } from '../utils/omit';
+
 const roleEnum = config.rolesByType.systemRoles;
 
 export const users = pgTable(
@@ -55,6 +57,8 @@ export const insertUserSchema = createInsertSchema(users, {
       .min(8, 'Password must be at least 8 characters'),
   );
 export const patchUserSchema = insertUserSchema.partial();
+
+export const safeUserSelect = omitKeys(users, ['hashedPassword']);
 
 export type UnsafeUser = z.infer<typeof unsafeSelectUserSchema>;
 export type User = z.infer<typeof selectUserSchema>;
