@@ -19,7 +19,7 @@ app.use(pinoLogger());
 app.use(
   cors({
     allowHeaders: [],
-    allowMethods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE'],
+    allowMethods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
     origin: [config.frontendUrl, config.backendUrl],
   }),
