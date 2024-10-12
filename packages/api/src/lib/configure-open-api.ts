@@ -17,6 +17,10 @@ export const commonRoutes = {
     name: 'Auth',
     description: 'Auth endpoints are used to manage authentication.',
   },
+  me: {
+    name: 'Me',
+    description: 'Me endpoints are used to manage the current user.',
+  },
   tasks: {
     name: 'Tasks',
     description: 'Tasks endpoints are used to manage tasks.',
