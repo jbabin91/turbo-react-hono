@@ -16,7 +16,11 @@ const adminUser = {
   password: 'password',
 };
 
-type Users = InsertUser[];
+type User = {
+  hashedPassword: string;
+} & Omit<InsertUser, 'password'>;
+
+type Users = User[];
 type Tasks = InsertTask[];
 
 async function seed() {

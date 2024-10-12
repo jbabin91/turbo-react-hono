@@ -1,7 +1,7 @@
 import { config, generateId } from '@repo/core';
 import { index, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import { type z } from 'zod';
+import { z } from 'zod';
 
 const roleEnum = config.rolesByType.systemRoles;
 
@@ -36,16 +36,25 @@ export const unsafeSelectUserSchema = createSelectSchema(users);
 export const selectUserSchema = unsafeSelectUserSchema.omit({
   hashedPassword: true,
 });
-export const insertUserSchema = createInsertSchema(users).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-});
-export const patchUserSchema = insertUserSchema
+export const insertUserSchema = createInsertSchema(users, {
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
+  firstName: z.string().min(1, 'First Name is required'),
+  lastName: z.string().min(1, 'Last Name is required'),
+})
   .omit({
+    id: true,
     hashedPassword: true,
+    createdAt: true,
+    updatedAt: true,
   })
-  .partial();
+  .setKey(
+    'password',
+    z
+      .string()
+      .min(1, 'Password is required')
+      .min(8, 'Password must be at least 8 characters'),
+  );
+export const patchUserSchema = insertUserSchema.partial();
 
 export type UnsafeUser = z.infer<typeof unsafeSelectUserSchema>;
 export type User = z.infer<typeof selectUserSchema>;
