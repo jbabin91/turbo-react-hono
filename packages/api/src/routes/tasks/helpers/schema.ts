@@ -8,6 +8,7 @@ export const tasksQuerySchema = paginationQuerySchema.merge(
       .enum(['id', 'name', 'done', 'createdAt'])
       .default('createdAt')
       .optional(),
+    limit: z.string().default('10').optional(),
     done: z.enum(['true', 'false']).default('false').optional(),
   }),
 );
