@@ -28,7 +28,7 @@ async function seed() {
 
   const users: Users = [
     {
-      email: adminUser.email,
+      email: adminUser.email.toLowerCase(),
       firstName: adminUser.firstName,
       lastName: adminUser.lastName,
       name: `${adminUser.firstName} ${adminUser.lastName}`,
@@ -47,7 +47,7 @@ async function seed() {
       firstName,
       lastName,
       name: `${firstName} ${lastName}`,
-      email: faker.internet.email({ firstName, lastName }),
+      email: faker.internet.email({ firstName, lastName }).toLowerCase(),
       hashedPassword: await argon2id.hash('password'),
       role: 'user',
     });
