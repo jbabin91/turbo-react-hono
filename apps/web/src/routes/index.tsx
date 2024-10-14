@@ -13,7 +13,7 @@ function IndexComponent() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <div className="text-center">
       <div className="flex justify-center">
         <a href="https://vitejs.dev" rel="noreferrer" target="_blank">
           <img alt="Vite logo" className="logo" src={viteLogo} />
@@ -34,6 +34,6 @@ function IndexComponent() {
       <p className="text-[#888]">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </div>
   );
 }

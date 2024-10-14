@@ -20,4 +20,10 @@ export default [
       '@typescript-eslint/consistent-type-definitions': 'off',
     },
   },
+  {
+    files: ['**/routes/**/*.{ts,tsx}', '**/api/**/*.{ts,tsx}'],
+    rules: {
+      'sort-keys-fix/sort-keys-fix': 'off',
+    },
+  },
 ];
