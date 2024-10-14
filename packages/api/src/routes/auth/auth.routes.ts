@@ -1,5 +1,5 @@
 import { z } from '@hono/zod-openapi';
-import { insertUserSchema, selectUserSchema } from '@repo/db';
+import { selectUserSchema } from '@repo/db';
 import { jsonContent, jsonContentRequired } from 'stoker/openapi/helpers';
 
 import { commonRoutes } from '../../lib/configure-open-api';
@@ -8,10 +8,11 @@ import { createRouteConfig } from '../../lib/route-config';
 import { isPublicAccess } from '../../middlewares/guard';
 import {
   errorResponses,
+  successWithDataSchema,
   successWithoutDataSchema,
 } from '../../utils/schema/common-responses';
 import { cookieSchema } from '../../utils/schema/common-schemas';
-import { signInSchema } from './helpers/schema';
+import { signInSchema, signUpSchema } from './helpers/schema';
 
 const tags = [commonRoutes.auth.name];
 
@@ -23,14 +24,17 @@ export const signUp = createRouteConfig({
   summary: 'Sign up with password',
   description: 'Sign up with email and password.',
   request: {
-    body: jsonContentRequired(insertUserSchema, "The user's information"),
+    body: jsonContentRequired(signUpSchema, "The user's information"),
   },
   responses: {
     [HttpStatusCodes.OK]: {
       headers: z.object({
         'Set-Cookie': cookieSchema,
       }),
-      ...jsonContent(selectUserSchema, 'The signed up user'),
+      ...jsonContent(
+        successWithDataSchema(selectUserSchema),
+        'The signed up user',
+      ),
     },
     ...errorResponses,
   },
@@ -51,7 +55,10 @@ export const signIn = createRouteConfig({
       headers: z.object({
         'Set-Cookie': cookieSchema,
       }),
-      ...jsonContent(selectUserSchema, 'The signed in user'),
+      ...jsonContent(
+        successWithDataSchema(selectUserSchema),
+        'The signed in user',
+      ),
     },
     ...errorResponses,
   },
