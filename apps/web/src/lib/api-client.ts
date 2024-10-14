@@ -1,5 +1,7 @@
 import { type AppTypes, type ErrorType } from '@repo/api';
-import { hc } from 'hono/client';
+import { type ClientResponse, hc } from 'hono/client';
+
+import { env } from '@/configs';
 
 export class ApiError extends Error {
   status: string | number;
@@ -22,6 +24,20 @@ export class ApiError extends Error {
   }
 }
 
+export async function handleResponse<
+  T extends Record<string, any>,
+  U extends ClientResponse<T, number, 'json'>,
+>(response: U) {
+  if (response.ok) {
+    const json = await response.json();
+    return json as Awaited<ReturnType<Extract<U, { status: 200 }>['json']>>;
+  }
+
+  const json = await response.json();
+  if ('error' in json) throw new ApiError(json.error);
+  throw new Error('Unknown error');
+}
+
 const clientConfig = {
   fetch: (input: RequestInfo | URL, init?: RequestInit) =>
     fetch(input, {
@@ -30,4 +46,4 @@ const clientConfig = {
     }),
 };
 
-export const apiClient = hc<AppTypes>('', clientConfig);
+export const apiClient = hc<AppTypes>(env.VITE_API_URL, clientConfig);
