@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/api": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.59.13",
     "@tanstack/react-router": "^1.65.0",
