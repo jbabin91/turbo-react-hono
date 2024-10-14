@@ -29,7 +29,7 @@
     "oslo": "^1.2.1",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
-    "stoker": "^1.1.0",
+    "stoker": "^1.2.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {

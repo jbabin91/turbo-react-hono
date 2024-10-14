@@ -93,6 +93,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.67.0
         version: 1.67.0(@tanstack/router-generator@1.65.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/router-zod-adapter':
+        specifier: ^1.67.0
+        version: 1.67.0(@tanstack/react-router@1.67.0(@tanstack/router-generator@1.65.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(zod@3.23.8)
       hono:
         specifier: ^4.6.4
         version: 4.6.4
@@ -194,8 +197,8 @@ importers:
         specifier: ^11.2.2
         version: 11.2.2
       stoker:
-        specifier: ^1.1.0
-        version: 1.1.0(@asteasolutions/zod-to-openapi@7.2.0(zod@3.23.8))(@hono/zod-openapi@0.16.4(hono@4.6.4)(zod@3.23.8))(hono@4.6.4)(openapi3-ts@4.4.0)
+        specifier: ^1.2.3
+        version: 1.2.3(@asteasolutions/zod-to-openapi@7.2.0(zod@3.23.8))(@hono/zod-openapi@0.16.4(hono@4.6.4)(zod@3.23.8))(hono@4.6.4)(openapi3-ts@4.4.0)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2629,6 +2632,13 @@ packages:
       webpack:
         optional: true
 
+  '@tanstack/router-zod-adapter@1.67.0':
+    resolution: {integrity: sha512-5vxO0a8i8ZDkD2Myvkvs1oz8CqPr4SsWh9jvn+I6h5pAYPPaTPQ4EN/QwUReWgSTCEhkApHUbyfzVLFOHmJAkQ==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@tanstack/react-router': '>=1.43.2'
+      zod: '>=3'
+
   '@tanstack/store@0.5.5':
     resolution: {integrity: sha512-EOSrgdDAJExbvRZEQ/Xhh9iZchXpMN+ga1Bnk8Nmygzs8TfiE6hbzThF+Pr2G19uHL6+DTDTHhJ8VQiOd7l4tA==}
 
@@ -4991,8 +5001,8 @@ packages:
   stable-hash@0.0.4:
     resolution: {integrity: sha512-LjdcbuBeLcdETCrPn9i8AYAZ1eCtu4ECAWtP7UleOiZ9LzVxRzzUZEoZ8zB24nhkQnDWyET0I+3sWokSDS3E7g==}
 
-  stoker@1.1.0:
-    resolution: {integrity: sha512-BtHrKdpvwC6kKB8t7rtJt9JiNFBP2K4OsJFKMY6Jz/2Ya9kMvGVUreO5H3mrkw9IGtu2rPgQUO2JWjFb3TSz+Q==}
+  stoker@1.2.3:
+    resolution: {integrity: sha512-i1EKytlmCSHKcyO2O2x5p/z8zzUM0w7o7O2PLw8oK6RZDDu7Cy8YuPM2ERPGZ7AdXS9XpnbQq2hw5k3h3cQxrw==}
     peerDependencies:
       '@asteasolutions/zod-to-openapi': ^7.0.0
       '@hono/zod-openapi': ^0.16.0
@@ -7319,6 +7329,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - webpack-sources
+
+  '@tanstack/router-zod-adapter@1.67.0(@tanstack/react-router@1.67.0(@tanstack/router-generator@1.65.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(zod@3.23.8)':
+    dependencies:
+      '@tanstack/react-router': 1.67.0(@tanstack/router-generator@1.65.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      zod: 3.23.8
 
   '@tanstack/store@0.5.5': {}
 
@@ -9851,7 +9866,7 @@ snapshots:
 
   stable-hash@0.0.4: {}
 
-  stoker@1.1.0(@asteasolutions/zod-to-openapi@7.2.0(zod@3.23.8))(@hono/zod-openapi@0.16.4(hono@4.6.4)(zod@3.23.8))(hono@4.6.4)(openapi3-ts@4.4.0):
+  stoker@1.2.3(@asteasolutions/zod-to-openapi@7.2.0(zod@3.23.8))(@hono/zod-openapi@0.16.4(hono@4.6.4)(zod@3.23.8))(hono@4.6.4)(openapi3-ts@4.4.0):
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.2.0(zod@3.23.8)
       hono: 4.6.4
