@@ -20,7 +20,7 @@
     "@repo/auth": "workspace:*",
     "@repo/core": "workspace:*",
     "@repo/db": "workspace:*",
-    "@scalar/hono-api-reference": "^0.5.153",
+    "@scalar/hono-api-reference": "^0.5.154",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.34.1",
@@ -29,7 +29,7 @@
     "oslo": "^1.2.1",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
-    "stoker": "^1.0.9",
+    "stoker": "^1.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
