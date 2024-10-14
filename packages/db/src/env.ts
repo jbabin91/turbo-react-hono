@@ -16,6 +16,7 @@ expand(
 const EnvSchema = z.object({
   ARGON_SECRET: z.string(),
   DATABASE_URL: z.string().url(),
+  DB_DRIZZLE_LOGGER: z.string().transform((s) => s !== 'false' && s !== '0'),
   LOG_LEVEL: z
     .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
     .default('info'),
