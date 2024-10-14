@@ -1,4 +1,5 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { Suspense } from 'react';
 
 import { DefaultCatchBoundary, NotFound } from './components/errors';
 import { queryClient } from './lib/query-client.ts';
@@ -24,5 +25,9 @@ declare module '@tanstack/react-router' {
 }
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
