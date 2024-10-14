@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import { Argon2id } from 'oslo/password';
 
 import { db } from '../src';
+import env from '../src/env';
 import {
   type InsertTask,
   type InsertUser,
@@ -23,8 +24,13 @@ type User = {
 type Users = User[];
 type Tasks = InsertTask[];
 
+// Converter func cos Argon2id except secret as ArrayBuffer | TypedArray
+const getArgonSecret = () => {
+  return new TextEncoder().encode(env.ARGON_SECRET);
+};
+
 async function seed() {
-  const argon2id = new Argon2id();
+  const argon2id = new Argon2id({ secret: getArgonSecret() });
 
   const users: Users = [
     {

@@ -12,14 +12,17 @@ import {
   type SignOutRoute,
   type SignUpRoute,
 } from './auth.routes';
-import { argon2 } from './helpers/argon2';
+import {
+  hashPasswordWithArgon,
+  verifyPasswordWithArgon,
+} from './helpers/argon2';
 import { removeSessionCookie, setSessionCookie } from './helpers/cookies';
 
 export const signUp: AppRouteHandler<SignUpRoute> = async (c) => {
   const data = c.req.valid('json');
 
   // Hashed password
-  const hashedPassword = await argon2.hash(data.password);
+  const hashedPassword = await hashPasswordWithArgon(data.password);
 
   const existingUser = await db.query.users.findFirst({
     where: eq(users.email, data.email.toLowerCase()),
@@ -62,7 +65,10 @@ export const signIn: AppRouteHandler<SignInRoute> = async (c) => {
   }
 
   // Verify password
-  const validPassword = await argon2.verify(user.hashedPassword, password);
+  const validPassword = await verifyPasswordWithArgon(
+    user.hashedPassword,
+    password,
+  );
 
   // If the password is invalid
   if (!validPassword) {

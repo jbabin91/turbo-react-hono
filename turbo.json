@@ -16,8 +16,12 @@
     },
     "db:migrate": {},
     "db:push": {},
-    "db:reset": {},
-    "db:seed": {},
+    "db:reset": {
+      "cache": false
+    },
+    "db:seed": {
+      "cache": false
+    },
     "db:studio": {},
     "dev": {
       "cache": false,

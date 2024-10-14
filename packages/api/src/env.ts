@@ -14,6 +14,7 @@ expand(
 );
 
 const EnvSchema = z.object({
+  ARGON_SECRET: z.string(),
   LOG_LEVEL: z
     .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
     .default('info'),
