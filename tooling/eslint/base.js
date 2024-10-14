@@ -1,4 +1,6 @@
 import js from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query';
+import pluginRouter from '@tanstack/eslint-plugin-router';
 import importX from 'eslint-plugin-import-x';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
@@ -27,6 +29,8 @@ export default tseslint.config(
       globals: globals.browser,
     },
   },
+  ...pluginQuery.configs['flat/recommended'],
+  ...pluginRouter.configs['flat/recommended'],
   {
     extends: [js.configs.recommended],
     plugins: {
