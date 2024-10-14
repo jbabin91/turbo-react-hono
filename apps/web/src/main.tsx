@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 
+import { TailwindIndicator, Toaster } from '@repo/ui';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -13,6 +14,8 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <Providers>
         <App />
+        <Toaster />
+        <TailwindIndicator />
       </Providers>
     </StrictMode>,
   );
