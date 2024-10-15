@@ -1,15 +1,12 @@
 import { toast } from '@repo/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from '@tanstack/react-router';
-import { z } from 'zod';
+import { type z } from 'zod';
 
 import { meQueryOptions } from '@/features/users';
 import { apiClient, handleResponse } from '@/lib/api-client';
 
-export const signInSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('Invalid email'),
-  password: z.string().min(1, 'Password is required'),
-});
+import { type signInSchema } from '../schema';
 
 export async function signIn(json: z.infer<typeof signInSchema>) {
   const response = await apiClient.auth['sign-in'].$post({

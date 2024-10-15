@@ -1,10 +1,9 @@
 export {
   signIn,
-  signInSchema,
   signOut,
   signUp,
-  signUpSchema,
   useSignIn,
   useSignOut,
   useSignUp,
 } from './api';
+export { signInSchema, signUpSchema } from './schema.ts';
