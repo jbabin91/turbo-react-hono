@@ -19,6 +19,7 @@ import { Route as AuthSignUpImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInImport } from './routes/_auth/sign-in'
 import { Route as AppTasksRouteImport } from './routes/_app/tasks/route'
 import { Route as AppTasksIndexImport } from './routes/_app/tasks/index'
+import { Route as AppTasksTaskIdImport } from './routes/_app/tasks/$taskId'
 
 // Create/Update Routes
 
@@ -59,6 +60,11 @@ const AppTasksRouteRoute = AppTasksRouteImport.update({
 
 const AppTasksIndexRoute = AppTasksIndexImport.update({
   path: '/',
+  getParentRoute: () => AppTasksRouteRoute,
+} as any)
+
+const AppTasksTaskIdRoute = AppTasksTaskIdImport.update({
+  path: '/$taskId',
   getParentRoute: () => AppTasksRouteRoute,
 } as any)
 
@@ -115,6 +121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignUpImport
       parentRoute: typeof AuthRouteImport
     }
+    '/_app/tasks/$taskId': {
+      id: '/_app/tasks/$taskId'
+      path: '/$taskId'
+      fullPath: '/tasks/$taskId'
+      preLoaderRoute: typeof AppTasksTaskIdImport
+      parentRoute: typeof AppTasksRouteImport
+    }
     '/_app/tasks/': {
       id: '/_app/tasks/'
       path: '/'
@@ -128,10 +141,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AppTasksRouteRouteChildren {
+  AppTasksTaskIdRoute: typeof AppTasksTaskIdRoute
   AppTasksIndexRoute: typeof AppTasksIndexRoute
 }
 
 const AppTasksRouteRouteChildren: AppTasksRouteRouteChildren = {
+  AppTasksTaskIdRoute: AppTasksTaskIdRoute,
   AppTasksIndexRoute: AppTasksIndexRoute,
 }
 
@@ -172,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/tasks': typeof AppTasksRouteRouteWithChildren
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/tasks/$taskId': typeof AppTasksTaskIdRoute
   '/tasks/': typeof AppTasksIndexRoute
 }
 
@@ -181,6 +197,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/tasks/$taskId': typeof AppTasksTaskIdRoute
   '/tasks': typeof AppTasksIndexRoute
 }
 
@@ -193,6 +210,7 @@ export interface FileRoutesById {
   '/_app/tasks': typeof AppTasksRouteRouteWithChildren
   '/_auth/sign-in': typeof AuthSignInRoute
   '/_auth/sign-up': typeof AuthSignUpRoute
+  '/_app/tasks/$taskId': typeof AppTasksTaskIdRoute
   '/_app/tasks/': typeof AppTasksIndexRoute
 }
 
@@ -205,9 +223,17 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/sign-in'
     | '/sign-up'
+    | '/tasks/$taskId'
     | '/tasks/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/about' | '/sign-in' | '/sign-up' | '/tasks'
+  to:
+    | '/'
+    | ''
+    | '/about'
+    | '/sign-in'
+    | '/sign-up'
+    | '/tasks/$taskId'
+    | '/tasks'
   id:
     | '__root__'
     | '/'
@@ -217,6 +243,7 @@ export interface FileRouteTypes {
     | '/_app/tasks'
     | '/_auth/sign-in'
     | '/_auth/sign-up'
+    | '/_app/tasks/$taskId'
     | '/_app/tasks/'
   fileRoutesById: FileRoutesById
 }
@@ -276,6 +303,7 @@ export const routeTree = rootRoute
       "filePath": "_app/tasks/route.tsx",
       "parent": "/_app",
       "children": [
+        "/_app/tasks/$taskId",
         "/_app/tasks/"
       ]
     },
@@ -286,6 +314,10 @@ export const routeTree = rootRoute
     "/_auth/sign-up": {
       "filePath": "_auth/sign-up.tsx",
       "parent": "/_auth"
+    },
+    "/_app/tasks/$taskId": {
+      "filePath": "_app/tasks/$taskId.tsx",
+      "parent": "/_app/tasks"
     },
     "/_app/tasks/": {
       "filePath": "_app/tasks/index.tsx",
