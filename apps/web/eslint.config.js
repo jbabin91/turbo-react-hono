@@ -21,7 +21,7 @@ export default [
     },
   },
   {
-    files: ['**/routes/**/*.{ts,tsx}', '**/api/**/*.{ts,tsx}'],
+    files: ['**/src/**/*.{ts,tsx}'],
     rules: {
       'sort-keys-fix/sort-keys-fix': 'off',
     },
